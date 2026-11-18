@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Tune Hub – Hindi Love, Sad &amp; Lofi Video Songs</title>
+  <meta name="description" content="Tune Hub: heart-touching Hindi love songs, sad songs, rain lofi and healing music videos. New song every day.">
+  <meta name="theme-color" content="#0c0a0f">
+  <meta property="og:title" content="Tune Hub – Hindi Video Songs">
+  <meta property="og:description" content="Heart-touching Hindi love, sad and lofi songs. New video song every day.">
+  <meta property="og:image" content="logo.png">
+  <link rel="icon" href="logo.png">
+  <link rel="apple-touch-icon" href="logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip" href="#songs">Skip to songs</a>
+
+  <header class="top">
+    <div class="wrap top-inner">
+      <a class="brand" href="./" aria-label="Tune Hub home">
+        <img src="logo.png" alt="" width="44" height="44">
+        <span>Tune <b>Hub</b></span>
+      </a>
+      <label class="search" for="q">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+        <input id="q" type="search" placeholder="Search songs, like “baarish” or “dua”" autocomplete="off">
+        <kbd>/</kbd>
+      </label>
+      <a class="btn btn-pink sub-btn" id="subTop" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        <span>Subscribe</span>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <!-- Player stage -->
+    <section class="stage wrap" aria-label="Now playing">
+      <div class="screen">
+        <div class="screen-ratio">
+          <div id="player"></div>
+          <button class="poster" id="poster" type="button" aria-label="Play">
+            <img id="posterImg" alt="">
+            <span class="poster-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="info">
+        <p class="eyebrow" id="nowLabel">New release</p>
+        <h1 id="nowTitle">Tune Hub</h1>
+        <p class="now-line" id="nowLine"></p>
+        <div class="now-tags" id="nowTags"></div>
+        <div class="now-actions">
+          <button class="btn btn-pink" id="bigPlay" type="button">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>Play song</span>
+          </button>
+          <button class="btn btn-ghost icon-btn" id="favNow" type="button" aria-label="Add to favourites" aria-pressed="false">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-9.2-9A5 5 0 0 1 12 6a5 5 0 0 1 9.2 5C19 15.6 12 20 12 20z"/></svg>
+          </button>
+          <button class="btn btn-ghost icon-btn" id="shareNow" type="button" aria-label="Share this song">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="m8.2 10.8 7.6-4.4M8.2 13.2l7.6 4.4"/></svg>
+          </button>
+          <a class="btn btn-ghost icon-btn" id="ytNow" target="_blank" rel="noopener" aria-label="Open on YouTube">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>
+          </a>
+        </div>
+
+        <div class="upnext">
+          <div class="upnext-head">
+            <h2>Up next</h2>
+            <label class="switch"><input type="checkbox" id="autoplay" checked><span></span>Autoplay</label>
+          </div>
+          <ol id="upNext"></ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- Weekly mood plan -->
+    <section class="week wrap" aria-labelledby="weekTitle">
+      <div class="week-text">
+        <p class="eyebrow">A new song every day</p>
+        <h2 id="weekTitle">Today is <span id="todayName"></span>: <em id="todayMood"></em></h2>
+        <button class="btn btn-soft" id="playToday" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>Play today’s mood</span>
+        </button>
+      </div>
+      <ol class="days" id="days"></ol>
+    </section>
+
+    <!-- Library -->
+    <section class="library wrap" id="songs" aria-labelledby="libTitle">
+      <div class="lib-head">
+        <h2 id="libTitle">Songs</h2>
+        <div class="lib-tools">
+          <select id="sort" aria-label="Sort songs">
+            <option value="new">Newest first</option>
+            <option value="top">Most played</option>
+            <option value="az">A to Z</option>
+          </select>
+          <button class="btn btn-soft" id="shuffleAll" type="button">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 3h5v5M4 20 21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg><span>Shuffle</span>
+          </button>
+        </div>
+      </div>
+      <div class="chips" id="chips" role="tablist" aria-label="Choose a mood"></div>
+      <p class="empty" id="empty" hidden></p>
+      <ul class="grid" id="grid"></ul>
+    </section>
+
+    <!-- All uploads -->
+    <section class="all wrap" aria-labelledby="allTitle">
+      <div class="all-text">
+        <p class="eyebrow">Full collection</p>
+        <h2 id="allTitle">All <span id="vidCount"></span> videos on the channel</h2>
+        <p>This playlist always shows every Tune Hub upload, including songs added today. Press play and it runs through the whole channel.</p>
+        <a class="btn btn-ghost" id="allLink" target="_blank" rel="noopener">Open the channel on YouTube</a>
+      </div>
+      <div class="all-player"><iframe id="allFrame" title="All Tune Hub videos" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>
+    </section>
+
+    <!-- Subscribe -->
+    <section class="cta wrap">
+      <img src="logo.png" alt="" width="96" height="96">
+      <div>
+        <h2>Never miss a new song</h2>
+        <p>Join <b id="subCount"></b> listeners. Subscribe and press the bell to hear each new Tune Hub song first.</p>
+      </div>
+      <a class="btn btn-pink" id="subBottom" target="_blank" rel="noopener">Subscribe on YouTube</a>
+    </section>
+  </main>
+
+  <footer class="foot wrap">
+    <p>© <span id="year"></span> Tune Hub · Hindi love, sad, lofi &amp; healing songs</p>
+    <p class="keys">Keyboard: <kbd>Space</kbd> play/pause · <kbd>N</kbd> next · <kbd>P</kbd> previous · <kbd>L</kbd> like · <kbd>/</kbd> search</p>
+  </footer>
+
+  <!-- Bottom player bar -->
+  <div class="bar" id="bar" hidden>
+    <div class="bar-progress" id="progress" role="slider" aria-label="Song position" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="progressFill"></span></div>
+    <div class="bar-inner">
+      <button class="bar-song" id="barSong" type="button" aria-label="Show video">
+        <img id="barImg" alt="">
+        <span class="bar-text"><b id="barTitle"></b><small id="barTime">0:00</small></span>
+      </button>
+      <div class="bar-ctrl">
+        <button class="ctl" id="shuffleBtn" type="button" aria-label="Shuffle" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M16 3h5v5M4 20 21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg></button>
+        <button class="ctl" id="prevBtn" type="button" aria-label="Previous song"><svg viewBox="0 0 24 24"><path d="M6 5v14M19 5 9 12l10 7z"/></svg></button>
+        <button class="ctl ctl-main" id="playBtn" type="button" aria-label="Play"><svg viewBox="0 0 24 24" id="playIcon"><path d="M8 5v14l11-7z"/></svg></button>
+        <button class="ctl" id="nextBtn" type="button" aria-label="Next song"><svg viewBox="0 0 24 24"><path d="M18 5v14M5 5l10 7-10 7z"/></svg></button>
+        <button class="ctl" id="repeatBtn" type="button" aria-label="Repeat this song" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M17 2l4 4-4 4"/><path d="M3 11V9a3 3 0 0 1 3-3h15M7 22l-4-4 4-4"/><path d="M21 13v2a3 3 0 0 1-3 3H3"/></svg></button>
+      </div>
+      <div class="bar-extra">
+        <button class="ctl" id="favBar" type="button" aria-label="Add to favourites" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-9.2-9A5 5 0 0 1 12 6a5 5 0 0 1 9.2 5C19 15.6 12 20 12 20z"/></svg></button>
+        <button class="ctl sleep" id="sleepBtn" type="button" aria-label="Sleep timer off"><svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg><span id="sleepLabel"></span></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="songs.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
